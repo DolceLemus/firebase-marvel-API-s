@@ -2,16 +2,13 @@ $(document).ready(function(){
    var apiKey = "94dc18323ec46ad8e5d2b1a45f2bb122";
     console.log(apiKey);
 
-
-
-
-
-
-
     $("#search-button").click(function(){
         console.log("coton de search clicleado");
 
         var search = $("#search").val();
+
+        var $characters = $("#characters");
+        $characters.html("<h1>Searching</h1>");
 
         $.ajax({
         url: "https://gateway.marvel.com:443/v1/public/characters?apikey="  + apiKey + "&nameStartsWith=" + search,
@@ -20,9 +17,10 @@ $(document).ready(function(){
                 // diferent template
                 var template = document.getElementById("template_content").innerHTML;
                 console.log("template");
+                               
+                 // limpiar cuerpo de html    
+                 $characters.html("");
 
-                var $characters = $("#characters");
-                
                 response.data.results.forEach(function(character){
                     // console.log(character);   
                     // console.log(character.name); 
